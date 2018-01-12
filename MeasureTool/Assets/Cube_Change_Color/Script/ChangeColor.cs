@@ -8,6 +8,11 @@ public class ChangeColor : MonoBehaviour
     private Material m_cubeMaterial;
     private Renderer m_cubeRenderer;
 
+    [Range(-1,1)]
+    public float vitesseGreenBlue = 0.5f;
+    [Range(-1, 1)]
+    public float vitesseToRed = 0.5f ;
+
     void Start()
     {
         m_cubeShader = GetComponent<Shader>();
@@ -27,7 +32,8 @@ public class ChangeColor : MonoBehaviour
 
     void Update()
     {
-        m_cubeRenderer.material.SetColor("_Color", Color.Lerp(Color.Lerp(Color.green, Color.blue, Mathf.Sin(1-Time.time)), Color.red, Mathf.Cos(Time.time)));
-       // m_cubeRenderer.material.SetColor("_Color", Color.Lerp(Color.blue, Color.red, Mathf.PingPong(Time.time, 1)));
+        m_cubeRenderer.material.SetColor("_Color", Color.Lerp(Color.Lerp(Color.green, Color.blue, Mathf.Sin(Time.time* vitesseGreenBlue)), Color.red, Mathf.Cos(Time.time* vitesseToRed)));
+        // m_cubeRenderer.material.SetColor("_Color", Color.Lerp(Color.blue, Color.red, Mathf.PingPong(Time.time, 1)));
+        
     }
 }
